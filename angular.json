@@ -18,7 +18,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/quickstart",
             "index": "src/index.html",
@@ -33,7 +33,16 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "./custom-webpack.config.js",
+              "mergeRules": {
+                "module": {
+                  "rules": "prepend"
+                }
+              },
+              "replaceDuplicatePlugins": true
+            }
           },
           "configurations": {
             "production": {
@@ -69,7 +78,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "quickstart:build:production"
