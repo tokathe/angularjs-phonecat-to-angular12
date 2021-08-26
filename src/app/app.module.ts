@@ -2,7 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static';
-import appModule from './angular-js/angular-js-app';
+import appModule from './angular-js-app';
+import { Phone } from './core/phone/phone.service';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import appModule from './angular-js/angular-js-app';
     HttpClientModule,
     UpgradeModule
   ],
-  providers: [ ]
+  providers: [ Phone ]
 })
 export class AppModule {
   constructor(private upgrade: UpgradeModule) { }
