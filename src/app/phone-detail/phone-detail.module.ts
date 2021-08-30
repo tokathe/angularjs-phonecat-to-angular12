@@ -1,17 +1,14 @@
 
-import { IAngularStatic } from "angular";
-import { PhoneDetailController } from "./phone-detail.component";
+declare var angular: angular.IAngularStatic;
+import { PhoneDetailComponent } from "./phone-detail.component";
 import CorePhoneModule from "../core/phone/phone.module";
-import phoneDetailHTML from "./phone-detail.template.html";
+import { downgradeComponent } from "@angular/upgrade/static";
 
-declare var angular: IAngularStatic;
 
 const PhoneDetailModule = 
 angular
   .module("phoneDetail", ["ngRoute", CorePhoneModule.name])
-  .component("phoneDetail", {
-    template: phoneDetailHTML,
-    controller: PhoneDetailController,
-});
+  .directive("phoneDetail", 
+  downgradeComponent({ component: PhoneDetailComponent}) as angular.IDirectiveFactory);
 
 export default PhoneDetailModule;

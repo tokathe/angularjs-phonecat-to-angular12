@@ -1,13 +1,18 @@
 declare var angular: angular.IAngularStatic;
-import { Phone, PhoneData } from '../core/phone/phone.service';
-export class PhoneDetailController {
-  phone!: PhoneData;
+import { Component } from '@angular/core';
+import { RouteParams } from '../ajs-upgraded-providers';
+import { Phone, PhoneData, PhoneDetail } from '../core/phone/phone.service';
+
+@Component({
+  selector: "phone-detail",
+  templateUrl: "./phone-detail.template.html",
+})
+export class PhoneDetailComponent {
+  phone!: PhoneDetail;
   mainImageUrl: string = '';
 
-  static $inject = ['$routeParams', 'phone'];
-
-  constructor($routeParams: angular.route.IRouteParamsService, phone: Phone) {
-    const phoneId = $routeParams.phoneId;
+  constructor(routeParams: RouteParams, phone: Phone) {
+    const phoneId = routeParams.phoneId;
     phone.get(phoneId).subscribe( data => {
       this.phone = data;
       this.setImage(data.images[0]);

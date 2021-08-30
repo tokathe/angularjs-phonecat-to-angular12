@@ -1,15 +1,14 @@
+import { downgradeComponent } from '@angular/upgrade/static';
 import { IAngularStatic } from 'angular';
 import CorePhoneModule from '../core/phone/phone.module';;
-import { PhoneListController } from './phone-list.component';
-import phoneListHTML from './phone-list.template.html';
+import { PhoneListComponent } from './phone-list.component';
 
 declare var angular: IAngularStatic;
 
 const PhoneListModule = angular
-  .module('phoneList', [CorePhoneModule.name])
-  .component('phoneList', {
-    template: phoneListHTML,
-    controller: PhoneListController,
-  });
+  .module('phoneList', [CorePhoneModule.name]).directive(
+    'phoneList',
+    downgradeComponent({component: PhoneListComponent}) as angular.IDirectiveFactory
+  );
 
 export default PhoneListModule;
