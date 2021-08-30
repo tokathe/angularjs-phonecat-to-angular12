@@ -1,7 +1,6 @@
-declare var angular: angular.IAngularStatic;
 import { Component } from '@angular/core';
-import { RouteParams } from '../ajs-upgraded-providers';
-import { Phone, PhoneData, PhoneDetail } from '../core/phone/phone.service';
+import { ActivatedRoute } from '@angular/router';
+import { Phone, PhoneDetail } from '../core/phone/phone.service';
 
 @Component({
   selector: "phone-detail",
@@ -9,10 +8,10 @@ import { Phone, PhoneData, PhoneDetail } from '../core/phone/phone.service';
 })
 export class PhoneDetailComponent {
   phone!: PhoneDetail;
-  mainImageUrl: string = '';
+  mainImageUrl!: string;
 
-  constructor(routeParams: RouteParams, phone: Phone) {
-    const phoneId = routeParams.phoneId;
+  constructor(activateRoute: ActivatedRoute, phone: Phone) {
+    const phoneId = activateRoute.snapshot.paramMap.get('phoneId') ?? '';
     phone.get(phoneId).subscribe( data => {
       this.phone = data;
       this.setImage(data.images[0]);
