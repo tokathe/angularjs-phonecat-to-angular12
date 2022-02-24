@@ -36,12 +36,6 @@ const appModule = (angular.module('phonecatApp', [
       top: 500,
       left: 0,
     });
-    // element.animate(
-    //   {
-    //     top: 0,
-    //   },
-    //   done
-    // );
     done();
     return (wasCanceled: boolean) => {
       if (wasCanceled) (element as any).stop();
@@ -55,14 +49,7 @@ const appModule = (angular.module('phonecatApp', [
       top: 0,
       left: 0,
     });
-    // element.animate(
-    //   {
-    //     top: -500,
-    //   },
-    //   done
-    // );
     done();
-
     return (wasCanceled: boolean) => {
       if (wasCanceled) (element as any).stop();
     };
